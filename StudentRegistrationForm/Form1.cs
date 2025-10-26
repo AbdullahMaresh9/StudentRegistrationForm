@@ -32,14 +32,14 @@ namespace StudentRegistrationForm
         private void btnSubmot_Click(object sender, EventArgs e)
         {
             // Validate Name
-            if (string.IsNullOrWhiteSpace(txtName.Text))
+            if (string.IsNullOrWhiteSpace(txtName.Text.Trim()))
             {
                 MessageBox.Show("Name is required!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtName.Focus();
                 return;
             }
             // Validate Email (Basic Email Format Check)
-            if (!Regex.IsMatch(txtEmail.Text, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+            if (!Regex.IsMatch(txtEmail.Text.Trim(), @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
             {
                 MessageBox.Show("Enter a valid email address!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtEmail.Focus();
@@ -74,8 +74,8 @@ namespace StudentRegistrationForm
             // All validations passed → Proceed with displaying data
 
             // Collecting input values
-            string name = txtName.Text;
-            string email = txtEmail.Text;
+            string name = txtName.Text.Trim();
+            string email = txtEmail.Text.Trim();
             string password = txtPassword.Text;
             string gender = rdoMale.Checked ? "Male" : rdoFemale.Checked ? "Female" : "Other";
             string birthdate = dtpBirthdate.Value.ToShortDateString();
